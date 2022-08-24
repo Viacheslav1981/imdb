@@ -1,0 +1,8 @@
+ru\sli\imbd\repository\Movies.class
+ru\sli\imbd\service\MoviesService.class
+ru\sli\imbd\repository\MoviesRepository.class
+ru\sli\imbd\service\MoviesMapper.class
+ru\sli\imbd\dto\MoviesDto.class
+ru\sli\imbd\controller\CinemaController.class
+ru\sli\imbd\ImbdApplication.class
+ru\sli\imbd\service\MoviesMapperImpl.class

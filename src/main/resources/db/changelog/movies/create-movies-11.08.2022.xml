@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="1" author="Slava" >
+        <createTable tableName="movies" schemaName="cinema">
+            <column name="id" type="bigint" remarks="идентификатор" autoIncrement="true">
+                <constraints primaryKey="true" unique="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(2000)" remarks="название фильма">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="datetime" remarks="дата создания">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_at" type="datetime" remarks="дата модификации">
+            </column>
+            <column name="rating" type="float" remarks="рейтинг фильма">
+            </column>
+
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="2" author="Slava" >
+
+        <insert tableName="movies" schemaName="cinema">
+            <column name="title" value="the God Father">
+            </column>
+            <column name="rating" value="9.2">
+            </column>
+            <column name="created_at" value="2022-08-11T08:27:02.971Z">
+            </column>
+        </insert>
+
+        <insert tableName="movies" schemaName="cinema">
+            <column name="title" value="Rocky 2">
+            </column>
+            <column name="rating" value="7.3">
+            </column>
+            <column name="created_at" value="2022-08-11T08:27:02.971Z">
+            </column>
+        </insert>
+
+        <insert tableName="movies" schemaName="cinema">
+            <column name="title" value="Rambo: First Blood 2">
+            </column>
+            <column name="rating" value="6.5">
+            </column>
+            <column name="created_at" value="2022-08-11T08:27:02.971Z">
+            </column>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>
