@@ -36,6 +36,12 @@ public class CinemaController {
                 .collect(Collectors.toList());
     }
 
+    @ApiOperation("один фильм со всеми участниками")
+    @GetMapping("/{id}")
+    public MoviesDto findWithPeople(@PathVariable Integer id) {
+        return moviesMapper.moviesToDto(moviesService.findWithPeople(id));
+    }
+
     @PreAuthorize("hasRole('ADMIN')")
     @ApiOperation("создание в бд нового фильма")
     @PostMapping()

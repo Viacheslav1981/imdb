@@ -2,6 +2,7 @@ package ru.sli.imdb.service;
 
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.sli.imdb.dto.MoviesDto;
 import ru.sli.imdb.repository.Movies;
 import ru.sli.imdb.repository.MoviesRepository;
@@ -25,6 +26,15 @@ public class MoviesService {
         return moviesRepository.findAll();
     }
 
+    public Movies findWithPeople(Integer id) {
+//        Movies movies = moviesRepository.getById(id);
+//        for (int i = 0; i < movies.getPeople().size(); i++) {
+//            System.out.println(movies.getPeople().get(i).getFullname());
+//        }
+
+        return moviesRepository.getById(id);
+    }
+
     public Movies createMovie(Movies movies) {
         movies.setCreatedAt(ZonedDateTime.now());
         return moviesRepository.save(movies);
@@ -42,8 +52,6 @@ public class MoviesService {
     public void deleteMovie(int id) {
         moviesRepository.deleteById(id);
     }
-
-
 
 
 }
