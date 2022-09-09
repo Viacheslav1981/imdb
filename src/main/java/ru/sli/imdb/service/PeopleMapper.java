@@ -5,7 +5,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import ru.sli.imdb.dto.PeopleDto;
-import ru.sli.imdb.repository.People;
+import ru.sli.imdb.entities.People;
 
 @Mapper(componentModel = "spring")
 public interface PeopleMapper {

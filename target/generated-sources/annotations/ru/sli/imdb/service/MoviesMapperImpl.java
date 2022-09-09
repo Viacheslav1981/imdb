@@ -1,16 +1,16 @@
 package ru.sli.imdb.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 import ru.sli.imdb.dto.MoviesDto;
-import ru.sli.imdb.repository.Movies;
-import ru.sli.imdb.repository.People;
+import ru.sli.imdb.entities.Movies;
+import ru.sli.imdb.entities.People;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-08-25T13:59:28+0300",
+    date = "2022-09-09T11:03:37+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.13 (BellSoft)"
 )
 @Component
@@ -29,9 +29,9 @@ public class MoviesMapperImpl implements MoviesMapper {
         moviesDto.setRating( movies.getRating() );
         moviesDto.setCreatedAt( movies.getCreatedAt() );
         moviesDto.setModifiedAt( movies.getModifiedAt() );
-        List<People> list = movies.getPeople();
-        if ( list != null ) {
-            moviesDto.setPeople( new ArrayList<People>( list ) );
+        Set<People> set = movies.getPeople();
+        if ( set != null ) {
+            moviesDto.setPeople( new HashSet<People>( set ) );
         }
 
         return moviesDto;
@@ -45,9 +45,9 @@ public class MoviesMapperImpl implements MoviesMapper {
 
         Movies movies = new Movies();
 
-        List<People> list = moviesDto.getPeople();
-        if ( list != null ) {
-            movies.setPeople( new ArrayList<People>( list ) );
+        Set<People> set = moviesDto.getPeople();
+        if ( set != null ) {
+            movies.setPeople( new HashSet<People>( set ) );
         }
         movies.setModifiedAt( moviesDto.getModifiedAt() );
         movies.setId( moviesDto.getId() );
@@ -65,16 +65,16 @@ public class MoviesMapperImpl implements MoviesMapper {
         }
 
         if ( movies.getPeople() != null ) {
-            List<People> list = moviesDto.getPeople();
-            if ( list != null ) {
+            Set<People> set = moviesDto.getPeople();
+            if ( set != null ) {
                 movies.getPeople().clear();
-                movies.getPeople().addAll( list );
+                movies.getPeople().addAll( set );
             }
         }
         else {
-            List<People> list = moviesDto.getPeople();
-            if ( list != null ) {
-                movies.setPeople( new ArrayList<People>( list ) );
+            Set<People> set = moviesDto.getPeople();
+            if ( set != null ) {
+                movies.setPeople( new HashSet<People>( set ) );
             }
         }
         if ( moviesDto.getModifiedAt() != null ) {

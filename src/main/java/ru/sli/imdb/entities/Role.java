@@ -1,4 +1,4 @@
-package ru.sli.imdb.repository;
+package ru.sli.imdb.entities;
 
 import javax.persistence.*;
 import java.util.List;

@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import ru.sli.imdb.dto.MoviesDto;
-import ru.sli.imdb.repository.Movies;
+import ru.sli.imdb.entities.Movies;
 
 @Mapper(componentModel = "spring")
 public interface MoviesMapper {

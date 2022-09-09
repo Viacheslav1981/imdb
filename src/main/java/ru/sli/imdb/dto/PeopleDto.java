@@ -1,21 +1,33 @@
 package ru.sli.imdb.dto;
 
 
-import lombok.Data;
-import ru.sli.imdb.repository.Movies;
+import ru.sli.imdb.entities.Movies;
+import ru.sli.imdb.entities.Participation;
 
 import java.util.List;
+import java.util.Set;
 
 
 public class PeopleDto {
 
     private Integer id;
 
-    private String fullname;
+    private String fullName;
 
     private List<Movies> movies;
 
+    private List<Participation> participation;
+
+
     public PeopleDto() {
+    }
+
+    public List<Movies> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Movies> movies) {
+        this.movies = movies;
     }
 
     public Integer getId() {
@@ -26,19 +38,20 @@ public class PeopleDto {
         this.id = id;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public List<Movies> getMovies() {
-        return movies;
+    public List<Participation> getParticipation() {
+        return participation;
     }
 
-    public void setMovies(List<Movies> movies) {
-        this.movies = movies;
+    public void setParticipation(List<Participation> participation) {
+        this.participation = participation;
     }
+
 }

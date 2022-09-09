@@ -1,4 +1,6 @@
-package ru.sli.imdb.repository;
+package ru.sli.imdb.entities;
+
+import ru.sli.imdb.entities.Role;
 
 import javax.persistence.*;
 import java.util.List;
