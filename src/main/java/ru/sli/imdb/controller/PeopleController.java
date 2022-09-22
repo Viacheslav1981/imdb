@@ -2,10 +2,12 @@ package ru.sli.imdb.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.sli.imdb.dto.PeopleDto;
 import ru.sli.imdb.entities.People;
+import ru.sli.imdb.repository.PeopleRepository;
 import ru.sli.imdb.service.PeopleMapper;
 import ru.sli.imdb.service.PeopleService;
 
@@ -20,10 +22,12 @@ public class PeopleController {
 
     private PeopleService peopleService;
     private PeopleMapper peopleMapper;
+    private PeopleRepository peopleRepository;
 
-    public PeopleController(PeopleService peopleService, PeopleMapper peopleMapper) {
+    public PeopleController(PeopleService peopleService, PeopleMapper peopleMapper, PeopleRepository peopleRepository) {
         this.peopleService = peopleService;
         this.peopleMapper = peopleMapper;
+        this.peopleRepository = peopleRepository;
     }
 
     @ApiOperation("список всех селебрити")
@@ -33,6 +37,11 @@ public class PeopleController {
 
         return people.stream().map(people1 -> peopleMapper.peopleToDto(people1))
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping("/{id}")
+    public People findById(@PathVariable int id) {
+        return peopleRepository.getById(id);
     }
 
     @PreAuthorize("hasRole('ADMIN')")

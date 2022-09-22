@@ -18,16 +18,17 @@ public class People {
 
     @Column(name = "fullname")
     private String fullName;
-
+//
 //    @ManyToMany(fetch = FetchType.EAGER)
 //    @JoinTable(
 //            name = "people_movies", schema = "cinema",
 //            joinColumns = @JoinColumn(name = "people_id", referencedColumnName = "id"),
 //            inverseJoinColumns = @JoinColumn(name = "participation_id", referencedColumnName = "id")
 //
+//
 //    )
-
-   // @org.springframework.data.annotation.Transient
+////
+//    @org.springframework.data.annotation.Transient
     @Transient
     private List<Participation> participation;
 

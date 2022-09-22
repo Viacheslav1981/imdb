@@ -20,7 +20,7 @@ public interface PeopleMoviesRepository extends JpaRepository<PeopleMovies, Inte
     @Query(value = "SELECT pm.movies_id, pm.people_id, pm.id, pm.participation_id " +
             "FROM cinema.people_movies pm WHERE pm.movies_id = :id", nativeQuery = true)
 
-    List<PeopleMovies> findPeopleMoviesById(Integer id);
+    List<PeopleMovies> findPeopleMoviesByMoviesId(Integer id);
 
 
 }

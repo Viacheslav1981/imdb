@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import ru.sli.imdb.entities.Participation;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface ParticipationRepository extends JpaRepository<Participation, Integer> {

@@ -38,17 +38,9 @@ public class MoviesController {
 
 //    @ApiOperation("список всех фильмов")
 //    @GetMapping("/try")
-//    public List<Movies> findAllMoviesWithPeople() {
+//    public List<Movies> findAllMovies() {
 //
-//        return moviesService.findAllMoviesWithPeople();
-//    }
-////
-//    @ApiOperation("список всех фильмов")
-//    @GetMapping()
-//    public List<Movies> findAll() {
-//        List<Movies> movies = moviesService.findAll();
-//
-//        return movies;
+//        return moviesService.findAllMovies();
 //    }
 
     @ApiOperation("один фильм со всеми участниками")

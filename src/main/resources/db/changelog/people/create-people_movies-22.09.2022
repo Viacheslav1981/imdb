@@ -5,34 +5,30 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-    <changeSet id="3" author="Slava">
+    <changeSet id="13" author="Slava" >
+
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="roles" schemaName="cinema"/>
+                <tableExists tableName="people_movies" schemaName="cinema"/>
             </not>
         </preConditions>
-        <createTable tableName="roles" schemaName="cinema">
+
+        <createTable tableName="people_movies" schemaName="cinema">
             <column name="id" type="bigint" remarks="идентификатор" autoIncrement="true">
                 <constraints primaryKey="true" unique="true" nullable="false"/>
             </column>
-            <column name="name" type="varchar(255)" remarks="роль">
-                <constraints nullable="false"/>
+            <column name="people_id" type="bigint">
+                <constraints nullable="true"/>
             </column>
-
+            <column name="movies_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+            <column name="participation_id" type="bigint">
+                <constraints nullable="true"/>
+            </column>
         </createTable>
 
     </changeSet>
 
-    <changeSet id="4" author="Slava" >
-        <insert tableName="roles" schemaName="cinema">
-            <column name="name" value="ROLE_USER">
-            </column>
-        </insert>
-        <insert tableName="roles" schemaName="cinema">
-            <column name="name" value="ROLE_ADMIN">
-            </column>
-        </insert>
-
-    </changeSet>
 
 </databaseChangeLog>

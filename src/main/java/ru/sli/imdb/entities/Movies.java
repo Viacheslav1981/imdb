@@ -28,17 +28,17 @@ public class Movies {
 
     @Column(name = "modified_at")
     private ZonedDateTime modifiedAt;
-
-   // @ManyToMany(fetch = FetchType.EAGER,  cascade = CascadeType.PERSIST)
+//
+//    @ManyToMany(fetch = FetchType.EAGER,  cascade = CascadeType.PERSIST)
 //    @OneToMany(fetch=FetchType.EAGER, orphanRemoval = true)
 //    @JoinTable(
 //            name = "people_movies", schema = "cinema",
 //            joinColumns = @JoinColumn(name = "movies_id", referencedColumnName = "id"),
 //            inverseJoinColumns = @JoinColumn(name = "people_id", referencedColumnName = "id")
 //    )
-
-
-   @Transient
+//
+//
+     @Transient
   //  @org.springframework.data.annotation.Transient
 
     private Set<People> people;

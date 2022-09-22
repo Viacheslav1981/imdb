@@ -5,31 +5,37 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-    <changeSet id="3" author="Slava">
+    <changeSet id="11" author="Slava" >
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="roles" schemaName="cinema"/>
+                <tableExists tableName="participation" schemaName="cinema"/>
             </not>
         </preConditions>
-        <createTable tableName="roles" schemaName="cinema">
+
+        <createTable tableName="participation" schemaName="cinema">
             <column name="id" type="bigint" remarks="идентификатор" autoIncrement="true">
                 <constraints primaryKey="true" unique="true" nullable="false"/>
             </column>
-            <column name="name" type="varchar(255)" remarks="роль">
+            <column name="name" type="varchar(100)" remarks="наименование участия">
                 <constraints nullable="false"/>
             </column>
-
         </createTable>
-
     </changeSet>
 
-    <changeSet id="4" author="Slava" >
-        <insert tableName="roles" schemaName="cinema">
-            <column name="name" value="ROLE_USER">
+    <changeSet id="12" author="Slava" >
+
+        <insert tableName="participation" schemaName="cinema">
+            <column name="name" value="Director">
             </column>
         </insert>
-        <insert tableName="roles" schemaName="cinema">
-            <column name="name" value="ROLE_ADMIN">
+
+        <insert tableName="participation" schemaName="cinema">
+            <column name="name" value="Writer">
+            </column>
+        </insert>
+
+        <insert tableName="participation" schemaName="cinema">
+            <column name="name" value="Actor">
             </column>
         </insert>
 
