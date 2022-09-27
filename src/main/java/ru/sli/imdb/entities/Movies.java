@@ -1,6 +1,12 @@
 package ru.sli.imdb.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -38,29 +44,27 @@ public class Movies {
 //    )
 //
 //
-     @Transient
+//     @Transient
   //  @org.springframework.data.annotation.Transient
+//
+//    private Set<People> people;
 
-    private Set<People> people;
+
+    //@JsonIgnore
+    @JsonManagedReference
+    @OneToMany(mappedBy = "movies")
+    private Set<PeopleMovies> peopleMovies;
+
 
     public Movies() {
-
     }
 
-    public Set<People> getPeople() {
-        return people;
+    public Set<PeopleMovies> getPeopleMovies() {
+        return peopleMovies;
     }
 
-    public void setPeople(Set<People> people) {
-        this.people = people;
-    }
-
-    public ZonedDateTime getModifiedAt() {
-        return modifiedAt;
-    }
-
-    public void setModifiedAt(ZonedDateTime modifiedAt) {
-        this.modifiedAt = modifiedAt;
+    public void setPeopleMovies(Set<PeopleMovies> peopleMovies) {
+        this.peopleMovies = peopleMovies;
     }
 
     public Integer getId() {
@@ -94,4 +98,20 @@ public class Movies {
     public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
+    public ZonedDateTime getModifiedAt() {
+        return modifiedAt;
+    }
+
+    public void setModifiedAt(ZonedDateTime modifiedAt) {
+        this.modifiedAt = modifiedAt;
+    }
+
+//    public Set<PeopleMovies> getPeopleMovies() {
+//        return peopleMovies;
+//    }
+//
+//    public void setPeopleMovies(Set<PeopleMovies> peopleMovies) {
+//        this.peopleMovies = peopleMovies;
+//    }
 }

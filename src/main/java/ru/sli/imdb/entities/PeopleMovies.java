@@ -1,6 +1,8 @@
 package ru.sli.imdb.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +12,6 @@ import javax.persistence.*;
 @Entity(name = "PeopleMovies")
 @Table(name = "people_movies", schema = "cinema")
 
-
 public class PeopleMovies {
 
     @Id
@@ -18,20 +19,31 @@ public class PeopleMovies {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "people_id")
-    private Integer peopleId;
+   // @JsonBackReference
+    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn(name = "people_id")
+    People people;
 
-    @Column(name = "movies_id")
-    private Integer moviesId;
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "movies_id")
+    Movies movies;
 
-    @Column(name = "participation_id")
-    private Integer participationId;
+    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn(name = "participation_id")
+    Participation participation;
 
     public PeopleMovies() {
     }
 
-    public PeopleMovies(Integer moviesId) {
-        this.moviesId = moviesId;
+    public Participation getParticipation() {
+        return participation;
+    }
+
+    public void setParticipation(Participation participation) {
+        this.participation = participation;
     }
 
     public Integer getId() {
@@ -42,27 +54,19 @@ public class PeopleMovies {
         this.id = id;
     }
 
-    public Integer getPeopleId() {
-        return peopleId;
+    public People getPeople() {
+        return people;
     }
 
-    public void setPeopleId(Integer peopleId) {
-        this.peopleId = peopleId;
+    public void setPeople(People people) {
+        this.people = people;
     }
 
-    public Integer getMoviesId() {
-        return moviesId;
+    public Movies getMovies() {
+        return movies;
     }
 
-    public void setMoviesId(Integer moviesId) {
-        this.moviesId = moviesId;
-    }
-
-    public Integer getParticipationId() {
-        return participationId;
-    }
-
-    public void setParticipationId(Integer participationId) {
-        this.participationId = participationId;
+    public void setMovies(Movies movies) {
+        this.movies = movies;
     }
 }

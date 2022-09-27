@@ -54,59 +54,67 @@ public class MoviesService {
 //    }
 
 
+//    public List<Movies> findAll() {
+//        List<Movies> movies = moviesRepository.findAll();
+//        List<Movies> newListMovies = new ArrayList<>();
+//        for (int i = 0; i < movies.size(); i++) {
+//
+//            Movies movie = findById(movies.get(i).getId());
+//            newListMovies.add(movie);
+//        }
+//        return newListMovies;
+//    }
+
     public List<Movies> findAll() {
-        List<Movies> movies = moviesRepository.findAll();
-        List<Movies> newListMovies = new ArrayList<>();
-        for (int i = 0; i < movies.size(); i++) {
-
-            Movies movie = findById(movies.get(i).getId());
-            newListMovies.add(movie);
-        }
-        return newListMovies;
+        return moviesRepository.findAll();
     }
-
 
     public Movies findById(Integer id) {
-
-        Movies movie = moviesRepository.getById(id);
-
-        List<PeopleMovies> peopleMovies = peopleMoviesRepository.findPeopleMoviesByMoviesId(movie.getId());
-        Set<People> peopleSet = new HashSet<>();
-        for (int i = 0; i < peopleMovies.size(); i++) {
-            int peopleId = peopleMovies.get(i).getPeopleId();
-            People people = peopleService.findById(peopleId);
-            List<Participation> participationList =  participationRepository.findParticipationByMoviesAndPeople(id, peopleId);
-            people.setParticipation(participationList);
-            peopleSet.add(people);
-        }
-
-        movie.setPeople(peopleSet);
-        return movie;
+       return moviesRepository.getById(id);
     }
 
 
-    public Movies createMovie(Movies movies) {
+//    public Movies findById(Integer id) {
+//
+//        Movies movie = moviesRepository.getById(id);
+//
+//        List<PeopleMovies> peopleMovies = peopleMoviesRepository.findPeopleMoviesByMoviesId(movie.getId());
+//        Set<People> peopleSet = new HashSet<>();
+//        for (int i = 0; i < peopleMovies.size(); i++) {
+//            int peopleId = peopleMovies.get(i).getPeopleId();
+//            People people = peopleService.findById(peopleId);
+//            List<Participation> participationList =  participationRepository.findParticipationByMoviesAndPeople(id, peopleId);
+//            people.setParticipation(participationList);
+//            peopleSet.add(people);
+//        }
+//
+//        movie.setPeople(peopleSet);
+//        return movie;
+//    }
 
-        movies.setCreatedAt(ZonedDateTime.now());
-        moviesRepository.save(movies);
 
-        for (People people : movies.getPeople()) {
-            for (Participation part : people.getParticipation()) {
-                PeopleMovies peopleMovies = new PeopleMovies();
-
-                peopleMovies.setPeopleId(people.getId());
-                peopleMovies.setMoviesId(movies.getId());
-                peopleMovies.setParticipationId(part.getId());
-
-                peopleMoviesRepository.save(peopleMovies);
-
-            }
-
-        }
-        log.info("фильм добавлен");
-        return movies;
-    }
-
+//    public Movies createMovie(Movies movies) {
+//
+//        movies.setCreatedAt(ZonedDateTime.now());
+//        moviesRepository.save(movies);
+//
+//        for (People people : movies.getPeople()) {
+//            for (Participation part : people.getParticipation()) {
+//                PeopleMovies peopleMovies = new PeopleMovies();
+//
+//                peopleMovies.setPeopleId(people.getId());
+//                peopleMovies.setMoviesId(movies.getId());
+//                peopleMovies.setParticipationId(part.getId());
+//
+//                peopleMoviesRepository.save(peopleMovies);
+//
+//            }
+//
+//        }
+//        log.info("фильм добавлен");
+//        return movies;
+//    }
+//
 
     public Movies updateMovie(MoviesDto moviesDto, int id) {
         Movies movies = moviesRepository.getById(id);

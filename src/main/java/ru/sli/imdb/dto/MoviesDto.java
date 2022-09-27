@@ -1,6 +1,7 @@
 package ru.sli.imdb.dto;
 
 import ru.sli.imdb.entities.People;
+import ru.sli.imdb.entities.PeopleMovies;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -21,13 +22,23 @@ public class MoviesDto {
 
     private Set<People> people;
 
+ //   private Set<PeopleMovies> peopleMovies;
+
 
    // private List<Participation> participation;
 
     public MoviesDto() {
     }
 
-//    public List<Participation> getParticipation() {
+    //    public Set<PeopleMovies> getPeopleMovies() {
+//        return peopleMovies;
+//    }
+//
+//    public void setPeopleMovies(Set<PeopleMovies> peopleMovies) {
+//        this.peopleMovies = peopleMovies;
+//    }
+
+    //    public List<Participation> getParticipation() {
 //        return participation;
 //    }
 //
@@ -76,6 +87,7 @@ public class MoviesDto {
     }
 
     public Set<People> getPeople() {
+
         return people;
     }
 

@@ -26,15 +26,29 @@ public class MoviesController {
         this.moviesService = moviesService;
         this.moviesMapper = moviesMapper;
     }
+//
+//    @ApiOperation("список всех фильмов")
+//    @GetMapping()
+//    public List<MoviesDto> findAll() {
+//        List<Movies> movies = moviesService.findAll();
+//
+//        return movies.stream().map(movies1 -> moviesMapper.moviesToDto(movies1))
+//                .collect(Collectors.toList());
+//    }
+
+
 
     @ApiOperation("список всех фильмов")
     @GetMapping()
-    public List<MoviesDto> findAll() {
-        List<Movies> movies = moviesService.findAll();
-
-        return movies.stream().map(movies1 -> moviesMapper.moviesToDto(movies1))
-                .collect(Collectors.toList());
+    public List<Movies> findAll() {
+        return moviesService.findAll();
     }
+
+//        @ApiOperation("один фильм со всеми участниками")
+//    @GetMapping("/{id}")
+//    public Movies findById(@PathVariable Integer id) {
+//        return moviesService.findById(id);
+//    }
 
 //    @ApiOperation("список всех фильмов")
 //    @GetMapping("/try")
@@ -43,21 +57,21 @@ public class MoviesController {
 //        return moviesService.findAllMovies();
 //    }
 
-    @ApiOperation("один фильм со всеми участниками")
-    @GetMapping("/{id}")
-    public MoviesDto findById(@PathVariable Integer id) {
-        return moviesMapper.moviesToDto(moviesService.findById(id));
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @ApiOperation("создание в бд нового фильма")
-    @PostMapping()
-    public MoviesDto createMovie(@RequestBody @Valid MoviesDto moviesDto) {
-        Movies movies = moviesMapper.toEntity(moviesDto);
-        movies = moviesService.createMovie(movies);
-
-        return moviesMapper.moviesToDto(movies);
-    }
+//    @ApiOperation("один фильм со всеми участниками")
+//    @GetMapping("/{id}")
+//    public MoviesDto findById(@PathVariable Integer id) {
+//        return moviesMapper.moviesToDto(moviesService.findById(id));
+//    }
+//
+//    @PreAuthorize("hasRole('ADMIN')")
+//    @ApiOperation("создание в бд нового фильма")
+//    @PostMapping()
+//    public MoviesDto createMovie(@RequestBody @Valid MoviesDto moviesDto) {
+//        Movies movies = moviesMapper.toEntity(moviesDto);
+//        movies = moviesService.createMovie(movies);
+//
+//        return moviesMapper.moviesToDto(movies);
+//    }
 
     @PreAuthorize("hasRole('ADMIN')")
     @ApiOperation("редактирование фильма")

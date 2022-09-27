@@ -1,16 +1,13 @@
 package ru.sli.imdb.service;
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 import ru.sli.imdb.dto.MoviesDto;
 import ru.sli.imdb.entities.Movies;
-import ru.sli.imdb.entities.People;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-09-21T14:39:03+0300",
+    date = "2022-09-27T12:18:01+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.13 (BellSoft)"
 )
 @Component
@@ -29,10 +26,6 @@ public class MoviesMapperImpl implements MoviesMapper {
         moviesDto.setRating( movies.getRating() );
         moviesDto.setCreatedAt( movies.getCreatedAt() );
         moviesDto.setModifiedAt( movies.getModifiedAt() );
-        Set<People> set = movies.getPeople();
-        if ( set != null ) {
-            moviesDto.setPeople( new HashSet<People>( set ) );
-        }
 
         return moviesDto;
     }
@@ -45,15 +38,11 @@ public class MoviesMapperImpl implements MoviesMapper {
 
         Movies movies = new Movies();
 
-        Set<People> set = moviesDto.getPeople();
-        if ( set != null ) {
-            movies.setPeople( new HashSet<People>( set ) );
-        }
-        movies.setModifiedAt( moviesDto.getModifiedAt() );
         movies.setId( moviesDto.getId() );
         movies.setTitle( moviesDto.getTitle() );
         movies.setRating( moviesDto.getRating() );
         movies.setCreatedAt( moviesDto.getCreatedAt() );
+        movies.setModifiedAt( moviesDto.getModifiedAt() );
 
         return movies;
     }
@@ -64,22 +53,6 @@ public class MoviesMapperImpl implements MoviesMapper {
             return null;
         }
 
-        if ( movies.getPeople() != null ) {
-            Set<People> set = moviesDto.getPeople();
-            if ( set != null ) {
-                movies.getPeople().clear();
-                movies.getPeople().addAll( set );
-            }
-        }
-        else {
-            Set<People> set = moviesDto.getPeople();
-            if ( set != null ) {
-                movies.setPeople( new HashSet<People>( set ) );
-            }
-        }
-        if ( moviesDto.getModifiedAt() != null ) {
-            movies.setModifiedAt( moviesDto.getModifiedAt() );
-        }
         if ( moviesDto.getId() != null ) {
             movies.setId( moviesDto.getId() );
         }
@@ -89,6 +62,9 @@ public class MoviesMapperImpl implements MoviesMapper {
         movies.setRating( moviesDto.getRating() );
         if ( moviesDto.getCreatedAt() != null ) {
             movies.setCreatedAt( moviesDto.getCreatedAt() );
+        }
+        if ( moviesDto.getModifiedAt() != null ) {
+            movies.setModifiedAt( moviesDto.getModifiedAt() );
         }
 
         return movies;

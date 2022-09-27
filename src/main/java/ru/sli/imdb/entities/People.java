@@ -1,6 +1,12 @@
 package ru.sli.imdb.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -28,10 +34,19 @@ public class People {
 //
 //    )
 ////
-//    @org.springframework.data.annotation.Transient
-    @Transient
-    private List<Participation> participation;
+  //  @org.springframework.data.annotation.Transient
+   // @Transient
+   // @ManyToOne(fetch = FetchType.EAGER)
+  //  private List<Participation> participation;
 
+   // @ToString.Exclude
+    //@Transient
+
+   // @JsonIgnore
+
+   @JsonBackReference
+    @OneToMany(mappedBy = "people")
+    private Set<PeopleMovies> peopleMovies;
 
     public People() {
     }
@@ -52,11 +67,11 @@ public class People {
         this.fullName = fullName;
     }
 
-    public List<Participation> getParticipation() {
-        return participation;
+    public Set<PeopleMovies> getPeopleMovies() {
+        return peopleMovies;
     }
 
-    public void setParticipation(List<Participation> participation) {
-        this.participation = participation;
+    public void setPeopleMovies(Set<PeopleMovies> peopleMovies) {
+        this.peopleMovies = peopleMovies;
     }
 }
