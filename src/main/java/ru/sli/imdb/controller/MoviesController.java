@@ -6,7 +6,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.sli.imdb.dto.MoviesDto;
 import ru.sli.imdb.entities.Movies;
-import ru.sli.imdb.entities.PeopleMovies;
 import ru.sli.imdb.service.MoviesMapper;
 import ru.sli.imdb.service.MoviesService;
 
@@ -27,23 +26,29 @@ public class MoviesController {
         this.moviesMapper = moviesMapper;
     }
 //
-//    @ApiOperation("список всех фильмов")
-//    @GetMapping()
-//    public List<MoviesDto> findAll() {
-//        List<Movies> movies = moviesService.findAll();
-//
-//        return movies.stream().map(movies1 -> moviesMapper.moviesToDto(movies1))
-//                .collect(Collectors.toList());
-//    }
+@ApiOperation("список всех фильмов")
+@GetMapping()
+public List<MoviesDto> findAll() {
+    List<Movies> movies = moviesService.findAll();
 
+    return movies.stream().map(movies1 -> moviesMapper.moviesToDto(movies1))
+            .collect(Collectors.toList());
+}
 
-
-    @ApiOperation("список всех фильмов")
-    @GetMapping()
-    public List<Movies> findAll() {
-        return moviesService.findAll();
+    @ApiOperation("один фильм со всеми участниками")
+    @GetMapping("/{id}")
+    public MoviesDto findById(@PathVariable Integer id) {
+        return moviesMapper.moviesToDto(moviesService.findById(id));
     }
 
+
+
+//    @ApiOperation("список всех фильмов")
+//    @GetMapping()
+//    public List<Movies> findAll() {
+//        return moviesService.findAll();
+//    }
+//
 //        @ApiOperation("один фильм со всеми участниками")
 //    @GetMapping("/{id}")
 //    public Movies findById(@PathVariable Integer id) {
@@ -57,11 +62,7 @@ public class MoviesController {
 //        return moviesService.findAllMovies();
 //    }
 
-//    @ApiOperation("один фильм со всеми участниками")
-//    @GetMapping("/{id}")
-//    public MoviesDto findById(@PathVariable Integer id) {
-//        return moviesMapper.moviesToDto(moviesService.findById(id));
-//    }
+
 //
 //    @PreAuthorize("hasRole('ADMIN')")
 //    @ApiOperation("создание в бд нового фильма")

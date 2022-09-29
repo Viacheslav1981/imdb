@@ -2,8 +2,8 @@ package ru.sli.imdb.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -14,12 +14,12 @@ import javax.persistence.*;
 
 public class PeopleMovies {
 
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-   // @JsonBackReference
     @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "people_id")

@@ -2,13 +2,8 @@ package ru.sli.imdb.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
-import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity(name = "People")
@@ -44,7 +39,7 @@ public class People {
 
    // @JsonIgnore
 
-   @JsonBackReference
+    @JsonBackReference
     @OneToMany(mappedBy = "people")
     private Set<PeopleMovies> peopleMovies;
 

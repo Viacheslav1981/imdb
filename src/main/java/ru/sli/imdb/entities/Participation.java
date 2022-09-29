@@ -1,10 +1,8 @@
 package ru.sli.imdb.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity(name = "Participation")
@@ -22,11 +20,19 @@ public class Participation {
     @Column(name = "name")
     private String name;
 
-     @JsonBackReference
+    @JsonBackReference
     @OneToMany(mappedBy = "participation")
     private Set<PeopleMovies> peopleMovies;
 
     public Participation() {
+    }
+
+    public Set<PeopleMovies> getPeopleMovies() {
+        return peopleMovies;
+    }
+
+    public void setPeopleMovies(Set<PeopleMovies> peopleMovies) {
+        this.peopleMovies = peopleMovies;
     }
 
     public Integer getId() {

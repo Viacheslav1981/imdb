@@ -1,11 +1,7 @@
 package ru.sli.imdb.dto;
 
 
-import ru.sli.imdb.entities.Movies;
-import ru.sli.imdb.entities.Participation;
-
 import java.util.List;
-import java.util.Set;
 
 
 public class PeopleDto {
@@ -14,20 +10,9 @@ public class PeopleDto {
 
     private String fullName;
 
-    private List<Movies> movies;
-
-    private List<Participation> participation;
-
+    private List<ParticipationDto> participation;
 
     public PeopleDto() {
-    }
-
-    public List<Movies> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(List<Movies> movies) {
-        this.movies = movies;
     }
 
     public Integer getId() {
@@ -46,12 +31,11 @@ public class PeopleDto {
         this.fullName = fullName;
     }
 
-    public List<Participation> getParticipation() {
+    public List<ParticipationDto> getParticipation() {
         return participation;
     }
 
-    public void setParticipation(List<Participation> participation) {
+    public void setParticipation(List<ParticipationDto> participation) {
         this.participation = participation;
     }
-
 }

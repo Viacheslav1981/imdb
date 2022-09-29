@@ -1,15 +1,10 @@
 package ru.sli.imdb.entities;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
-import java.util.List;
 import java.util.Set;
 
 @Entity(name = "Movies")
@@ -50,7 +45,6 @@ public class Movies {
 //    private Set<People> people;
 
 
-    //@JsonIgnore
     @JsonManagedReference
     @OneToMany(mappedBy = "movies")
     private Set<PeopleMovies> peopleMovies;
