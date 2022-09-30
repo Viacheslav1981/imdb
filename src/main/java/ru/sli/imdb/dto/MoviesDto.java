@@ -1,6 +1,7 @@
 package ru.sli.imdb.dto;
 
 import java.time.ZonedDateTime;
+import java.util.Set;
 
 
 public class MoviesDto {
@@ -15,9 +16,18 @@ public class MoviesDto {
 
     private ZonedDateTime modifiedAt;
 
+    private Set<PeopleDto> people;
+
     public MoviesDto() {
     }
 
+    public Set<PeopleDto> getPeople() {
+        return people;
+    }
+
+    public void setPeople(Set<PeopleDto> people) {
+        this.people = people;
+    }
 
     public Integer getId() {
         return id;
