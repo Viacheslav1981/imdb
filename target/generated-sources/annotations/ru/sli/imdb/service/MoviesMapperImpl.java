@@ -7,7 +7,7 @@ import ru.sli.imdb.entities.Movies;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-09-30T14:58:57+0300",
+    date = "2022-10-03T16:01:29+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.13 (BellSoft)"
 )
 @Component

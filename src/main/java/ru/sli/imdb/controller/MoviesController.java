@@ -57,9 +57,17 @@ public class MoviesController {
         Movies movies = moviesService.findById(id);
 
         Set<PeopleMovies> peopleMovies = movies.getPeopleMovies();
-        Set<PeopleDto> peopleDtoSet = new HashSet<>();
+        Set<PeopleDto> peopleDtoSet = mapFromPeopleToPeopleDtos(peopleMovies);
 
+        MoviesDto moviesDto = moviesMapper.moviesToDto(movies);
+        moviesDto.setPeople(peopleDtoSet);
+
+        return moviesDto;
+    }
+
+    Set<PeopleDto> mapFromPeopleToPeopleDtos(Set<PeopleMovies> peopleMovies) {
         int oldId = 0;
+        Set<PeopleDto> peopleDtoSet = new HashSet<>();
 
         for (PeopleMovies oneRowFromPeopleMovies : peopleMovies) {
 
@@ -76,30 +84,26 @@ public class MoviesController {
         }
 
         for (PeopleDto peopleDto : peopleDtoSet) {
-            System.out.println(peopleDto.getId() + " " + peopleDto.getFullName());
 
             List<ParticipationDto> participationDtoList = new ArrayList<>();
 
             for (PeopleMovies pm : peopleMovies) {
 
-                if (peopleDto.getId() == pm.getPeople().getId()) {
+                int peopleDtoPeopleId = peopleDto.getId();
+                int peopleMoviesPeopleId = pm.getPeople().getId();
+
+                if (peopleDtoPeopleId == peopleMoviesPeopleId) {
                     Participation participation = pm.getParticipation();
                     ParticipationDto participationDto = new ParticipationDto();
                     participationDto.setId(participation.getId());
                     participationDto.setName(participation.getName());
 
                     participationDtoList.add(participationDto);
-
                 }
                 peopleDto.setParticipation(participationDtoList);
             }
-
         }
-
-        MoviesDto moviesDto = moviesMapper.moviesToDto(movies);
-        moviesDto.setPeople(peopleDtoSet);
-
-        return moviesDto;
+        return peopleDtoSet;
     }
 
 
