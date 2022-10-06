@@ -18,7 +18,7 @@ import ru.sli.imdb.service.PeopleService;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -39,6 +39,7 @@ public class MoviesController {
         this.peopleMapper = peopleMapper;
         this.peopleService = peopleService;
     }
+
 
     //
     @ApiOperation("список всех фильмов")
@@ -65,9 +66,9 @@ public class MoviesController {
         return moviesDto;
     }
 
-    Set<PeopleDto> mapFromPeopleToPeopleDtos(Set<PeopleMovies> peopleMovies) {
+    public static Set<PeopleDto> mapFromPeopleToPeopleDtos(Set<PeopleMovies> peopleMovies) {
         int oldId = 0;
-        Set<PeopleDto> peopleDtoSet = new HashSet<>();
+        Set<PeopleDto> peopleDtoSet = new LinkedHashSet<>();
 
         for (PeopleMovies oneRowFromPeopleMovies : peopleMovies) {
 
